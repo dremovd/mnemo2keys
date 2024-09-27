@@ -1,11 +1,11 @@
 import * as bip39 from 'bip39';
-import * as nacl from 'tweetnacl';
 import { derivePath } from 'ed25519-hd-key';
+
 import * as web3 from '@solana/web3.js';
 
 const bs58 = require('bs58');
 
-async function mnemonicToKeys(mnemonic: string, numKeys: number): Promise<string[]> {
+async function mnemonicToKeys(mnemonic: string, numKeys: number): Promise<{ publicKey: string, secretKey: string }[]> {
   const seed = await bip39.mnemonicToSeed(mnemonic);
   const keys: { publicKey: string, secretKey: string }[] = [];
 
